@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import uploadFile from '../../../firebase'
 import { userRequest } from '../../../requestMethod';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ const AddProduct = () => {
     const [data, setData] = useState({})
     const [isUploading, setIsUploading] = useState(false)
     const [progress, SetProgress] = useState("")
+    const ref = useRef()
     const user = useSelector(state => state.user.currentUser)
 
     if(!user.isAdmin) return <Navigate to='/' />
@@ -44,58 +45,6 @@ const AddProduct = () => {
             setIsUploading(true)
             SetProgress('Failed')
         })
-
-
-
-
-        // const fileName = new Date().getTime() + file.name
-
-        // const storage = getStorage(app)
-        // const storageRef = ref(storage, fileName)
-        // const uploadTask = uploadBytesResumable(storageRef, file);
-
-        // // Register three observers:
-        // // 1. 'state_changed' observer, called any time the state changes
-        // // 2. Error observer, called on failure
-        // // 3. Completion observer, called on successful completion
-        // uploadTask.on('state_changed',
-        //     (snapshot) => {
-        //         // Observe state change events such as progress, pause, and resume
-        //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        //         // console.log('Upload is ' + progress + '% done');
-        //         SetProgress(progress.toFixed(2) + '%')
-        //         switch (snapshot.state) {
-        //             case 'paused':
-        //                 // console.log('Upload is paused');
-        //                 setIsUploading(false)
-        //                 break;
-        //             case 'running':
-        //                 // console.log('Upload is running');
-        //                 setIsUploading(true)
-        //                 break;
-        //         }
-        //     },
-        //     (error) => {
-        //         // Handle unsuccessful uploads
-        //         setIsUploading(false)
-        //         SetProgress("Failed")
-        //     },
-        //     () => {
-        //         // Handle successful uploads on complete
-        //         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        //         setIsUploading(false)
-        //         SetProgress("Image uploaded")
-        //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        //             setData(prevState => {
-        //                 return {
-        //                     ...prevState,
-        //                     img: downloadURL
-        //                 }
-        //             })
-        //         });
-        //     }
-        // )
     }
 
     function handleArray(event) {
@@ -111,9 +60,10 @@ const AddProduct = () => {
         event.preventDefault()
 
         try {
-            const res = await userRequest.post('product', data)
-            const form = document.querySelector('.register__form')
-            form.reset()
+            await userRequest.post('product', data)
+            // const form = document.querySelector('.register__form')
+            // form.reset()
+            ref.current.reset()
         }
         catch (err) {
             console.log(err.message)
@@ -123,7 +73,7 @@ const AddProduct = () => {
     return (
         <div className='register'>
             <div className="title">Add Product</div>
-            <form action="" className='register__form'>
+            <form action="" className='register__form' ref={ref}>
                 <input type="text" placeholder="Product's title" name='title' onChange={onChangeHandler} />
                 <input type="text" placeholder='Category: ex - shirt, jeans, silk' name='categories' onChange={handleArray} />
                 <input type="text" placeholder='Size: xs, s, m, l, xl' name='size' onChange={handleArray} />

@@ -5,17 +5,17 @@ const router = require('express').Router()
 
 // create
 
-router.post('/', verifyToken, async (req, res) => {
-    const newCart = new cartModel(req.body)
+// router.post('/', verifyToken, async (req, res) => {
+//     const newCart = new cartModel(req.body)
 
-    try {
-        const saveCart = await newCart.save()
-        return res.status(200).json(saveCart)
-    }
-    catch (err) {
-        return res.status(500).json(err.message)
-    }
-})
+//     try {
+//         const saveCart = await newCart.save()
+//         return res.status(200).json(saveCart)
+//     }
+//     catch (err) {
+//         return res.status(500).json(err.message)
+//     }
+// })
 
 //update
 
@@ -95,17 +95,5 @@ router.get("/find/:id", verifyTokenAndAuthorization, async (req, res) => {
     }
 })
 
-
-// get all cart for admin
-
-router.get('/', verifyTokenAndAdmin, async (req, res) => {
-    try{
-        const carts = await cartModel.find()
-        return res.status(200).json(carts)
-    }
-    catch(err){
-        return res.status(500).json(err.message)
-    }
-})
 
 module.exports = router

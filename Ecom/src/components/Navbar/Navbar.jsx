@@ -9,7 +9,6 @@ import { SearchContext } from '../../context/SearchContext';
 
 const Navbar = () => {
   const navigate = useNavigate()
-  const cart = useSelector(state => state.cart)
   const dispatch = useDispatch()
   const {setSearchValue} = useContext(SearchContext)
   const user = useSelector(state => state.user.currentUser)

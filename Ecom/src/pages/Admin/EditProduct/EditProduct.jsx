@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import uploadFile from '../../../firebase'
 import { publicRequest, userRequest } from '../../../requestMethod';
 import { useSelector } from 'react-redux';
@@ -64,64 +63,6 @@ const EditProduct = () => {
             setIsUploading(imageURL ? false : true)
             SetProgress(imageURL ? 'Image Uploaded' : 'Failed')
         })
-
-
-        // setData(prevState => {
-        //     return {
-        //         ...prevState,
-        //         [event.target.name]: event.target.files[0]
-        //     }
-        // })
-        // const file = event.target.files[0]
-
-        // const fileName = new Date().getTime() + file.name
-
-        // const storage = getStorage(app)
-        // const storageRef = ref(storage, fileName)
-        // const uploadTask = uploadBytesResumable(storageRef, file);
-
-        // // Register three observers:
-        // // 1. 'state_changed' observer, called any time the state changes
-        // // 2. Error observer, called on failure
-        // // 3. Completion observer, called on successful completion
-        // uploadTask.on('state_changed',
-        //     (snapshot) => {
-        //         // Observe state change events such as progress, pause, and resume
-        //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        //         // console.log('Upload is ' + progress + '% done');
-        //         SetProgress(progress.toFixed(2) + '%')
-        //         switch (snapshot.state) {
-        //             case 'paused':
-        //                 // console.log('Upload is paused');
-        //                 setIsUploading(false)
-        //                 break;
-        //             case 'running':
-        //                 // console.log('Upload is running');
-        //                 setIsUploading(true)
-        //                 break;
-        //         }
-        //     },
-        //     (error) => {
-        //         // Handle unsuccessful uploads
-        //         setIsUploading(false)
-        //         SetProgress("Failed")
-        //     },
-        //     () => {
-        //         // Handle successful uploads on complete
-        //         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        //         setIsUploading(false)
-        //         SetProgress("Image uploaded")
-        //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        //             setData(prevState => {
-        //                 return {
-        //                     ...prevState,
-        //                     img: downloadURL
-        //                 }
-        //             })
-        //         });
-        //     }
-        // )
     }
 
     function handleArray(event) {

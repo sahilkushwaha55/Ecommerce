@@ -10,13 +10,15 @@ import Layout from './layout/Layout'
 // import AddProduct from './pages/Admin/AddProduct/AddProduct'
 // import EditProduct from './pages/Admin/EditProduct/EditProduct'
 // import EditProfile from './pages/EditProfile/EditProfile'
+// import SearchPage from './pages/SearchPage/SearchPage'
+// import WhiteList from './pages/WhiteList/WhiteList'
 import { Suspense, lazy } from 'react'
-import SearchPage from './pages/SearchPage/SearchPage'
-import WhiteList from './pages/WhiteList/WhiteList'
 
 const Home = lazy(() => import('./pages/Home'))
 const ProductList = lazy(() => import('./pages/ProductList/ProductList'))
 const Product = lazy(() => import('./pages/Product/Product'))
+const SearchPage = lazy(() => import('./pages/SearchPage/SearchPage'))
+const WhiteList = lazy(() => import('./pages/WhiteList/WhiteList'))
 const Register = lazy(() => import('./pages/Register/Register'))
 const Login = lazy(() => import('./pages/Login/Login'))
 const Cart = lazy(() => import('./pages/Cart/Cart'))

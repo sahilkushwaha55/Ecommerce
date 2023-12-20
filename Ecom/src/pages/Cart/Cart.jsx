@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './cart.scss'
 import { Link, useParams } from 'react-router-dom'
 import CartItem from '../../components/CartItem/CartItem'
-import { useSelector } from 'react-redux'
 import { publicRequest } from '../../requestMethod'
 
 const Cart = () => {

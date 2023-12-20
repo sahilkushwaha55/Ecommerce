@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineSearch, AiOutlineHeart } from "react-icons/ai";
 import { TiShoppingCart } from "react-icons/ti";
 import { userRequest } from '../../requestMethod';
-import { addList, inList, removeList } from '../../redux/whiteListRedux';
+import { addList, removeList } from '../../redux/whiteListRedux';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Product = ({ img, productId, price }) => {

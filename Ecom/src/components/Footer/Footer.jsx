@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { IoLocationSharp, IoCallSharp, IoMail } from "react-icons/io5";
 import './footer.scss'
 
@@ -13,12 +14,12 @@ const Footer = () => {
             <div className="footer__section">
                 <div className="footer__heading">Useful Links</div>
                 <ul className='footer__links'>
-                    <li>Home</li>
-                    <li>Cart</li>
-                    <li>Likes</li>
-                    <li>Men Fashion</li>
-                    <li>Women Fashion</li>
-                    <li>Kids Fashion</li>
+                    <li><Link to='../'>Home</Link></li>
+                    <li><Link to='../cart'>Cart</Link></li>
+                    <li><Link to='../whitelist'>Likes</Link></li>
+                    <li><Link to='../men'>Men Fashion</Link></li>
+                    <li><Link to='../women'>Women Fashion</Link></li>
+                    <li><Link to='../kid'>Kids Fashion</Link></li>
                     <li>Career</li>
                     <li>Terms</li>
                 </ul>
