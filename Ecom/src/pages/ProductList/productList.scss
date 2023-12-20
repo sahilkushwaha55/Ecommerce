@@ -1,0 +1,25 @@
+.productList{
+    font-size: 1.6rem;
+
+    &__title{
+        width: 100%;
+        font-size: 4rem;
+        font-weight: 700;
+        color: var(--dark-green);
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    &__selection{
+        padding: 2rem 4rem 0rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__clearFilter{
+        color: var(--dark-green);
+        font-weight: 500;
+        margin-left: 1rem;
+        cursor: pointer;
+    }
+}

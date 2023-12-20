@@ -1,0 +1,48 @@
+import React from 'react'
+import { IoLocationSharp, IoCallSharp, IoMail } from "react-icons/io5";
+import './footer.scss'
+
+const Footer = () => {
+    return (
+        <footer className='footer'>
+            <div className='footer__section'>
+                <h1>SuperMart</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, adipisci! Architecto, ex? Unde repellendus porro facilis at totam nostrum vero architecto. Veritatis, officiis quidem. Dolorem dicta ad nisi a necessitatibus!</p>
+            </div>
+
+            <div className="footer__section">
+                <div className="footer__heading">Useful Links</div>
+                <ul className='footer__links'>
+                    <li>Home</li>
+                    <li>Cart</li>
+                    <li>Likes</li>
+                    <li>Men Fashion</li>
+                    <li>Women Fashion</li>
+                    <li>Kids Fashion</li>
+                    <li>Career</li>
+                    <li>Terms</li>
+                </ul>
+            </div>
+
+            <div className="footer__section">
+                <div className="footer__heading">contact</div>
+                <div className='footer__contact'>
+                    <IoLocationSharp /> 
+                    <p>Varanasi, Uttar Pradesh - 221001</p>
+                </div>
+
+                <div className='footer__contact'>
+                    <IoCallSharp /> 
+                    <p>8318491159, 8545903570</p>
+                </div>
+
+                <div className='footer__contact'>
+                    <IoMail /> 
+                    <p>sahilkushwaha55@gmail.com</p>
+                </div>
+            </div>
+        </footer>
+    )
+}
+
+export default Footer

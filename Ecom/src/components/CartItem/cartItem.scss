@@ -1,0 +1,20 @@
+.cartItem{
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+
+    &__img{
+        width: 12rem;
+        height: 12rem;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    &__detail{
+        width: 100%;
+
+        & span{
+            font-weight: 600;
+        }
+    }
+}

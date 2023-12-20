@@ -1,0 +1,36 @@
+.footer{
+    font-size: 1.6rem;
+    padding: 2rem;
+    color: #fff;
+    text-align: justify;
+    background-color: var(--light-green);
+    display: flex;
+    gap: 5rem;
+
+    &__section{
+        flex: 1;
+    }
+
+    &__heading{
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+    }
+
+    &__links{
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+
+        & li{
+            width: 50%;
+        }
+    }
+
+    &__contact{
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}

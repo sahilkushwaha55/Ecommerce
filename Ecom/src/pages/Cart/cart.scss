@@ -1,0 +1,47 @@
+.cart{
+    font-size: 1.6rem;
+    padding: 2rem 4rem;
+
+    &__buttonContainer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & a{
+            margin-right: 2rem;
+            color: #000;
+        }
+    }
+
+    &__box{
+        padding: 2rem 0;
+        display: flex;
+        gap: 8rem;
+    }
+
+    &__item{
+        width: 65%;
+    }
+
+    &__summary{
+        width: 35%;
+    }
+
+    &__inline{
+        margin-bottom: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__summaryTitle{
+        font-size: 3rem;
+    }
+
+    &__totalAmount{
+        font-size: 2.2rem;
+    }
+
+    &__button{
+        width: 100%;
+    }
+}
