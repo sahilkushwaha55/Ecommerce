@@ -36,8 +36,8 @@ const Navbar = () => {
         <NavLink to='women' className='navbar__link'>WOMEN</NavLink>
         <NavLink to='kid' className='navbar__link'>KIDS</NavLink>
       </div>
+      <input type="text" className='navbar__searchbar' onFocus={() => navigate('/search')} onChange={handleInput} />
       <div className='navbar__right'>
-        <input type="text" className='navbar__searchbar' onFocus={() => navigate('/search')} onChange={handleInput} />
         <NavLink className='' to='cart'>
           <TiShoppingCart size={30} className='icon' />
         </NavLink>

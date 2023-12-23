@@ -1,36 +1,17 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './admin.scss'
 import { useNavigate } from 'react-router-dom'
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { publicRequest, userRequest } from '../../requestMethod';
+import { userRequest } from '../../requestMethod';
 import { useSelector } from 'react-redux';
+import useHttp from '../../hooks/useHttp';
 
 const Admin = () => {
-  const [data, setData] = useState([])
+  const httpReq = useHttp({url: 'product'})
   const navigate = useNavigate()
   const user = useSelector(state => state.user.currentUser)
-  const cancelToken = axios.CancelToken.source()
 
   if(!user.isAdmin) navigate('/')
-
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const res = await publicRequest.get(`product`,
-        {
-          cancelToken: axios.CancelToken.source().token
-        })
-        setData(res.data)
-      }
-      catch (err) {
-        console.log(err)
-      }
-    }
-    getProduct()
-
-    return () => cancelToken.cancel()
-  }, [])
 
   async function handleDelete(id) {
     try {
@@ -55,7 +36,7 @@ const Admin = () => {
         <span className='admin__title'>Edit</span>
         <span className='admin__title'>Delete</span>
       </div>
-      {data.map((product) => <div className="admin__product" key={product._id}>
+      {httpReq.data.length && httpReq.data.map((product) => <div className="admin__product" key={product._id}>
         <input type="checkbox" name="" id="" />
         <span className='admin__title'>{product.title}</span>
         <img src={product.img} alt={product.title} className='admin__img' />

@@ -6,6 +6,8 @@ import { userRequest } from '../../requestMethod';
 import { addList, removeList } from '../../redux/whiteListRedux';
 import { useDispatch, useSelector } from 'react-redux';
 
+import './products.scss'
+
 const Product = ({ img, productId, price }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()

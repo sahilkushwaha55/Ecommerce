@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './cart.scss'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import CartItem from '../../components/CartItem/CartItem'
-import { publicRequest } from '../../requestMethod'
+import useHttp from '../../hooks/useHttp'
 
 const Cart = () => {
-  const [ cart, setCart ] = useState({})
   const userId = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)?.currentUser?._id
-
-  useEffect(() => {
-    const getCart = async () => {
-      try {
-          const res = await publicRequest.get(`cart/find/${userId}`)
-          setCart(res.data)
-      }
-      catch (err) {
-          console.log(err)
-      }
-  }
-  if(userId) getCart()
-  }, [])
+  const httpReq = useHttp({method: 'get', url: `cart/find/${userId}`})
   
   return (
     <div className='cart'>
@@ -32,37 +19,38 @@ const Cart = () => {
             </div>
             <button className='btn'>Checkout Now</button>
         </div>
+        {httpReq.data?.products && 
         <div className="cart__box">
           <div className="cart__item">
             {
-              cart?.products?.map((item) => <CartItem key={item._id} product={item} userId={userId} setCart={setCart} />)
+              httpReq.data.products.map((item) => <CartItem key={item._id} product={item} userId={userId} setCart={httpReq.setData} />)
             }
           </div>
           <div className="cart__summary">
             <div className="cart__summaryTitle">ORDER SUMMARY</div>
             <div className="cart__inline">
               <span>Subtotal</span>
-              <span>₹{cart?.totalPrice}</span>
+              <span>₹{httpReq.data.totalPrice}</span>
             </div>
 
             <div className="cart__inline">
               <span>Estimated Shopping</span>
-              <span>₹{cart?.totalPrice}</span>
+              <span>₹{httpReq.data.totalPrice}</span>
             </div>
 
             <div className="cart__inline">
               <span>Shopping Discount</span>
-              <span>₹-{cart?.totalPrice * 1 / 10}</span>
+              <span>₹-{httpReq.data.totalPrice * 1 / 10}</span>
             </div>
 
             <div className="cart__inline cart__totalAmount">
               <span>Total</span>
-              <span>₹{Math.round(cart?.totalPrice - (cart?.totalPrice * 1 / 10))}</span>
+              <span>₹{Math.round(httpReq.data.totalPrice - (httpReq.data.totalPrice * 1 / 10))}</span>
             </div>
 
             <button className='btn cart__button'>Checkout Now</button>
           </div>
-        </div>
+        </div>}
     </div>
   )
 }

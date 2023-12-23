@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const whiteListSlice = createSlice({
     name: 'whiteList',
-    initialState: {list: []},
+    initialState: JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.whiteList) || {list: []},
     reducers: {
         addList: (state, action) => {
             state.list.push(action.payload)

@@ -1,4 +1,4 @@
-import { publicRequest, userRequest } from "../requestMethod"
+import { publicRequest } from "../requestMethod"
 import { logOut, loginFailure, loginStart, loginSuccess } from "./userRedux"
 
 export const login = async (dispatch, user) => {

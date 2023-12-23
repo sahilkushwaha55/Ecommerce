@@ -16,6 +16,13 @@
         justify-content: space-between;
     }
 
+    @media only screen and (max-width: 43.75em) {
+        &__selection{
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+
     &__clearFilter{
         color: var(--dark-green);
         font-weight: 500;

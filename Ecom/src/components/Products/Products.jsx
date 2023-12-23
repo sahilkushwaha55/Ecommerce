@@ -27,7 +27,7 @@ const Products = ({ cat, filter }) => {
             setData(res.data)
         }
         catch(err){
-          console.log(err)
+          console.log(err.message)
         }
       }
       getProduct()

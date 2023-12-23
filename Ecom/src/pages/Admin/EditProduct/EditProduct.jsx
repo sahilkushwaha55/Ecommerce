@@ -1,45 +1,24 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import uploadFile from '../../../firebase'
-import { publicRequest, userRequest } from '../../../requestMethod';
+import { userRequest } from '../../../requestMethod';
 import { useSelector } from 'react-redux';
 
 import '../../Register/register.scss'
+import useHttp from '../../../hooks/useHttp';
 
 const EditProduct = () => {
     const { id } = useParams()
+    const httpReq = useHttp({url: `product/find/${id}`})
     const navigate = useNavigate()
-    const [data, setData] = useState({})
     const [isUploading, setIsUploading] = useState(false)
     const [progress, SetProgress] = useState("")
     const user = useSelector(state => state.user.currentUser)
-    const cancelToken = axios.CancelToken.source()
 
     if(!user.isAdmin) navigate('/')
 
-    useEffect(() => {
-        const getProduct = async () => {
-            try {
-                const res = await publicRequest.get(`product/find/${id}`,
-                {
-                  cancelToken: cancelToken.token
-                })
-                setData({
-                    ...res.data
-                })
-            }
-            catch (err) {
-                console.log(err)
-            }
-        }
-        getProduct()
-
-        return () => cancelToken.cancel()
-    }, [])
-
     function onChangeHandler(event) {
-        setData(prevState => {
+        httpReq.setData(prevState => {
             return {
                 ...prevState,
                 [event.target.name]: event.target.value
@@ -54,7 +33,7 @@ const EditProduct = () => {
         const file = event.target.files[0]
 
         uploadFile(file).then((imageURL) => {
-            setData(prevState => {
+            httpReq.setData(prevState => {
                 return {
                     ...prevState,
                     img: imageURL
@@ -66,7 +45,7 @@ const EditProduct = () => {
     }
 
     function handleArray(event) {
-        setData(prevState => {
+        httpReq.setData(prevState => {
             return {
                 ...prevState,
                 [event.target.name]: event.target.value.split(/\s*,\s*/)
@@ -78,7 +57,7 @@ const EditProduct = () => {
         event.preventDefault()
 
         try {
-            await userRequest.put(`product/${id}`, data)
+            await userRequest.put(`product/${id}`, httpReq.data)
             navigate("../admin")
         }
         catch (err) {
@@ -91,17 +70,17 @@ const EditProduct = () => {
         <div className='register'>
             <div className="title">Add Product</div>
             <form action="" className='register__form'>
-                <input type="text" placeholder="Product's title" name='title' onChange={onChangeHandler} value={data.title || ""} />
-                <input type="text" placeholder='Category: ex - shirt, jeans, silk' name='categories' onChange={handleArray} value={data.categories || ""} />
-                <input type="text" placeholder='Size: xs, s, m, l, xl' name='size' onChange={handleArray} value={data.size || ""} />
-                <input type="number" placeholder='Price' name='price' onChange={onChangeHandler} value={data.price || 0} />
-                <input type="text" placeholder='Color: black, green, red etc.' name='color' onChange={handleArray} value={data.color || ""} />
+                <input type="text" placeholder="Product's title" name='title' onChange={onChangeHandler} value={httpReq.data.title || ""} />
+                <input type="text" placeholder='Category: ex - shirt, jeans, silk' name='categories' onChange={handleArray} value={httpReq.data.categories || ""} />
+                <input type="text" placeholder='Size: xs, s, m, l, xl' name='size' onChange={handleArray} value={httpReq.data.size || ""} />
+                <input type="number" placeholder='Price' name='price' onChange={onChangeHandler} value={httpReq.data.price || 0} />
+                <input type="text" placeholder='Color: black, green, red etc.' name='color' onChange={handleArray} value={httpReq.data.color || ""} />
                 <div>
                     <span style={{ fontSize: '1.5rem', fontWeight: 600 }}>Product's image:</span>
                     <input type="file" name='img' onChange={handleFile} />
                     {progress && <span>{progress}</span>}
                 </div>
-                <textarea placeholder="Product's description" cols="30" rows="2" name='desc' onChange={onChangeHandler} value={data.desc || ""}></textarea>
+                <textarea placeholder="Product's description" cols="30" rows="2" name='desc' onChange={onChangeHandler} value={httpReq.data.desc || ""}></textarea>
                 <button className='btn' onClick={handleSubmit} disabled={isUploading}>Save</button>
             </form>
         </div>
