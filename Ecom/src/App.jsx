@@ -17,8 +17,6 @@ import { Suspense, lazy } from 'react'
 const Home = lazy(() => import('./pages/Home'))
 const ProductList = lazy(() => import('./pages/ProductList/ProductList'))
 const Product = lazy(() => import('./pages/Product/Product'))
-const SearchPage = lazy(() => import('./pages/SearchPage/SearchPage'))
-const WhiteList = lazy(() => import('./pages/WhiteList/WhiteList'))
 const Register = lazy(() => import('./pages/Register/Register'))
 const Login = lazy(() => import('./pages/Login/Login'))
 const Cart = lazy(() => import('./pages/Cart/Cart'))
@@ -26,6 +24,8 @@ const Admin = lazy(() => import('./pages/Admin/Admin'))
 const AddProduct = lazy(() => import('./pages/Admin/AddProduct/AddProduct'))
 const EditProduct = lazy(() => import('./pages/Admin/EditProduct/EditProduct'))
 const EditProfile = lazy(() => import('./pages/EditProfile/EditProfile'))
+const SearchPage = lazy(() => import('./pages/SearchPage/SearchPage'))
+const WhiteList = lazy(() => import('./pages/WhiteList/WhiteList'))
 
 
 const router = createBrowserRouter(

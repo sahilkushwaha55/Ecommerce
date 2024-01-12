@@ -5,6 +5,10 @@
     grid-template-columns: max-content 1fr min-content;
     align-items: center;
 
+    @media only screen and (max-width: 31.25em) {
+        padding: 1rem 0;
+    }
+
     &__left {
         display: flex;
         align-items: center;
@@ -22,6 +26,10 @@
         text-decoration: none;
         color: var(--light-green);
         margin-right: 1.5rem;
+
+        @media only screen and (max-width: 31.25em) {
+            margin-right: 1.2rem;
+        }
     }
 
     &__link:hover {
@@ -32,12 +40,23 @@
     &__title {
         font-size: 3rem;
         margin-right: 2rem;
+
+        @media only screen and (max-width: 31.25em) {
+            font-size: 2.5rem;
+        }
     }
 
     &__searchbar {
         padding: .7rem 1rem;
         border: 1px solid var(--light-green);
         margin-right: 1rem;
+
+        @media only screen and (max-width: 31.25em) {
+            width: 95%;
+            padding: .7rem 0;
+            margin-right: 0;
+            justify-self: center;
+        }
     }
 
     @media only screen and (max-width: 43.75em) {

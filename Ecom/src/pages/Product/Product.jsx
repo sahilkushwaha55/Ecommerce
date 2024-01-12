@@ -31,6 +31,7 @@ const Product = () => {
 
     async function handleClick() {
         try {
+            // getToken()
             await userRequest.put(`cart/${userId}`, {id, quantity, price: httpReq.data.price})
         }
         catch (err) {

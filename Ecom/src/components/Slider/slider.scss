@@ -1,17 +1,31 @@
 .slidebox {
+    width: 100%;
+    height: 50vh;
     position: relative;
-    display: flex;
     overflow: hidden;
-    transition: all .3s;
+
+    @media only screen and (max-width: 43.75em) {
+        height: 35vh;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+        height: 25vh;
+    }
 
     &__imgbox {
-        width: 100vw;
-        height: 50vh;
+        width: 100%;
+        height: 100%;
+        display: flex;
     }
 
 
     &__img{
-        width: 100vw;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        flex-shrink: 0;
+        flex-grow: 0;
+        transition: translate .3s ease-in-out;
     }
 
 
@@ -20,6 +34,7 @@
         height: 100%;
         background-color: rgba($color: #000000, $alpha: .3);
         position: absolute;
+        top: 0;
         display: flex;
         justify-content: center;
         align-items: center;

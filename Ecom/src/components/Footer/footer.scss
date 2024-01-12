@@ -7,6 +7,14 @@
     display: flex;
     gap: 5rem;
 
+    @media only screen and (max-width: 43.75em) {
+        gap: 2.5rem;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+        flex-direction: column;
+    }
+
     &__section{
         flex: 1;
     }
@@ -15,6 +23,10 @@
         font-size: 2rem;
         font-weight: 600;
         margin-bottom: 2rem;
+
+        @media only screen and (max-width: 43.75em) {
+            margin-bottom: 1.2rem;
+        }
     }
 
     &__links{

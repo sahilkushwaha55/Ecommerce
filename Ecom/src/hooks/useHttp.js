@@ -6,6 +6,7 @@ const useHttp = (req) =>{
     const [isLoading, setIsLoading] = useState(false)
     const [err, setErr] = useState(false)
     const cancelToken = axios.CancelToken.source()
+    const token = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)?.currentUser?.accessToken
 
     useEffect(() => {
         setIsLoading(true)
@@ -13,7 +14,11 @@ const useHttp = (req) =>{
             try{
                 const res = await axios({
                     method: 'get',
-                    url: `http://localhost:3000/api/${req.url}`,
+                    url: `https://ecomapi-2bn5.onrender.com/api/${req.url}`,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'token': `Bearer ${token}`
+                    },
                     cancelToken: cancelToken.token,
                     withCredentials: true
                 })

@@ -23,9 +23,10 @@ router.post("/register", async (req, res) => {
     })
 
     try {
+        console.log("start")
         const saveUser = await newUser.save()
 
-        await cartModel.create({userId: saveUser._id})
+        await cartModel.create({userId: saveUser._id.toString()})
 
         return res.status(201).json("user created")
     }
@@ -58,15 +59,17 @@ router.post('/login', loginLimiter, async (req, res) => {
         }, process.env.JWT_SEC,
             { expiresIn: "30d" })
 
-        res.cookie('accessToken', accessToken, {
-            maxAge: 30 * 24 * 60 * 60 *1000,
-            httpOnly: true,
-            sameSite: 'strict'
-        })
 
         const { password, ...others } = user._doc
 
-        return res.status(200).json(others)
+        // res.cookie('accessToken', accessToken, {
+        //     maxAge: 30 * 24 * 60 * 60 *1000,
+        //     httpOnly: true,
+        //     sameSite: 'strict',
+        //     secure: true
+        // })
+
+        return res.status(200).json({...others, accessToken})
     }
     catch (err) {
         res.status(500).json(err.message)

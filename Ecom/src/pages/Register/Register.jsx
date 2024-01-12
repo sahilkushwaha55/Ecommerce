@@ -28,8 +28,7 @@ const Register = () => {
             return setErr("Password and Confirm Password doesn't match")
 
         try {
-            const res = await publicRequest.post(`auth/register`, data)
-            console.log(res)
+            await publicRequest.post(`auth/register`, data)
             login(dispatch, data)
             
         }

@@ -8,6 +8,10 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
+    @media only screen and (max-width: 31.25em) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     &__card{
         height: 40vh;
         background-size: cover;
@@ -16,6 +20,10 @@
 
         &:hover > *{
             opacity: 1;
+        }
+
+        @media only screen and (max-width: 31.25em) {
+            height: 30vh;
         }
     }
 

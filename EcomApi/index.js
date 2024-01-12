@@ -17,7 +17,7 @@ dotenv.config()
 
 app.use(helmet())
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:5173')
+    res.header('Access-Control-Allow-Origin', process.env.FRONT_URL)
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
     res.header("Access-Control-Allow-Credentials", true)
@@ -29,7 +29,7 @@ app.use(rateLimit({
     message: 'Too many request from this IP, Please wait for an hour!'
 }))
 app.use(express.json({ limit: '10kb'}))
-// app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded())
 app.use(cookieParser())
 app.use(mongoSanitize())
 app.use(xss())
