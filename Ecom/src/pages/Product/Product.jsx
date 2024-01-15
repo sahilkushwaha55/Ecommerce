@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import './product.scss'
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,7 +31,6 @@ const Product = () => {
 
     async function handleClick() {
         try {
-            // getToken()
             await userRequest.put(`cart/${userId}`, {id, quantity, price: httpReq.data.price})
         }
         catch (err) {

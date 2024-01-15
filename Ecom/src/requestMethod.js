@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BASE_URL = 'https://ecomapi-2bn5.onrender.com/api/'
+const BASE_URL = 'http://localhost:3000/api/'
 let token
 const localValue = JSON.parse(localStorage.getItem("persist:root"))
 if(localValue) token = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)?.currentUser?.accessToken

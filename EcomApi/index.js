@@ -29,7 +29,7 @@ app.use(rateLimit({
     message: 'Too many request from this IP, Please wait for an hour!'
 }))
 app.use(express.json({ limit: '10kb'}))
-app.use(bodyParser.urlencoded())
+// app.use(bodyParser.urlencoded())
 app.use(cookieParser())
 app.use(mongoSanitize())
 app.use(xss())

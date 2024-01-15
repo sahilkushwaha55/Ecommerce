@@ -14,7 +14,7 @@ const useHttp = (req) =>{
             try{
                 const res = await axios({
                     method: 'get',
-                    url: `https://ecomapi-2bn5.onrender.com/api/${req.url}`,
+                    url: `http://localhost:3000/api/${req.url}`,
                     headers: {
                         'Content-Type': 'application/json',
                         'token': `Bearer ${token}`

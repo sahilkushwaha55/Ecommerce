@@ -59,7 +59,7 @@ router.get("/find/:id", async (req, res) => {
 //get all prodcut
 
 router.get("/", async (req, res) => {
-    const { qNew, qCategory, size, color, sort, name } = req.query
+    const { qCategory, size, color, sort, name } = req.query
 
     try {
         let filterObj = {}
